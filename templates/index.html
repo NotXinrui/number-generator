@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Random Number Generator</h1>
+    <button id="generateButton">Generate Numbers</button>
+    <p id="numbers"></p>
+
+    <script>
+        document.getElementById('generateButton').addEventListener('click', function() {
+            fetch('/generate_numbers')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('numbers').textContent = 'Generated Numbers: ' + data.join(', ');
+                });
+        });
+    </script>
+</body>
+</html>
